@@ -4,6 +4,7 @@ include 'models/users.php';
 include 'models/photos.php';
 
 userAccess();
+
 $currentUserId = (int) $_SESSION["currentUserId"];
 
 do {

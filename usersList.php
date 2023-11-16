@@ -1,7 +1,7 @@
 <?php
 include 'php/sessionManager.php';
 include_once "models/Users.php";
-include_once "models/users.php";
+
 
 
 userAccess();
@@ -21,8 +21,17 @@ foreach ($list as $User) {
     $email = $User->Email();
     $avatar = $User->Avatar();
     $imageSRC = "images/usager.png";
-    if($User->isAdmin()){
-        $imageSRC = "images/Admin.png";
+    
+    
+    if(!$User->isBlocked()){
+        $face = '<i class="fas fa-smile" style="font-size:24px;color:green"></i>';
+    }
+    else{
+        $face = '<i class="fas fa-frown" style="font-size:24px;color:red"></i>';
+    }
+
+    if($user->isAdmin()){
+        $adminIcone;
     }
     $UserHTML = <<<HTML
     <div class="UserRow" User_id="$id">
@@ -32,13 +41,19 @@ foreach ($list as $User) {
                 <div class="UserInfo">
                     <span class="UserName">$name</span>
                     <a href="mailto:$email" class="UserEmail" target="_blank" >$email</a>
-                    <img class="control" src=$imageSRC alt="">
+                    <a href="loginForm.php">login</a>
+                    <a href="blockedUnblocked.php?id=$id">$face</a>
+                    <a href="confirmDeleteProfil?id=$id"><i class="fas fa-user-alt-slash" style="font-size:24px;color:orange"></i></a>
+                    
                 </div>
             </div>
         </div>
     </div>           
     HTML;
-    $viewContent = $viewContent . $UserHTML;
+    if($User != $user){
+        $viewContent = $viewContent . $UserHTML;
+    }
+    
 }
 
 $viewScript = <<<HTML

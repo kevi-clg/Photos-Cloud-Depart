@@ -7,7 +7,7 @@
 
 .UserContainer {
     display: grid;
-    grid-template-columns: auto 110px;
+    grid-template-columns:  auto 110px;
     align-items: top;
 }
 
