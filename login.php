@@ -7,6 +7,8 @@ $id = 0;
 $password = null;
 $avatar = "images/no-avatar.png";
 $userName = "";
+$type = 0;
+$blocked = 0;
 function EmailExist($email)
 {
     if (isset($email)) {
@@ -17,6 +19,12 @@ function EmailExist($email)
         $GLOBALS["userName"] = $user->Name();
         $GLOBALS["avatar"] = $user->Avatar();
         $GLOBALS["password"] = $user->Password();
+        $_SESSION['blocked'] = $user->Blocked();
+        $_SESSION["Type"]  = $user->Type();
+        
+         if($user->isBlocked()){
+            redirect('BlockedMessage.php');
+        }
         return true;
     }
     return false;
@@ -41,12 +49,18 @@ if (isset($_POST['submit'])) {
         $_SESSION['passwordError'] = 'Mot de passe incorrect';
     }
     if ($validUser) {
+       
         $_SESSION['validUser'] = true;
         $_SESSION['currentUserId'] = $id;
         $_SESSION['userName'] = $userName;
         $_SESSION['avatar'] = $avatar;
+      
         redirect('photosList.php');
     }
 }
+
+
+
+
 
 redirect('loginForm.php');

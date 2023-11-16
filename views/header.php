@@ -1,4 +1,5 @@
 <?php
+
     $pageTitle = "Photos Cloud";
     if (!isset($viewTitle))
         $viewTitle = "";
@@ -19,7 +20,7 @@
 
         
         $AdminMenu = "";
-        if($user->isAdmin()) {
+        if($_SESSION['Type'] === 1) {
              $AdminMenu = <<<HTML
             <a href="usersList.php" class="dropdown-item">
                 <i class="menuIcon fa fa-users mx-2"></i> Gestion des usagers

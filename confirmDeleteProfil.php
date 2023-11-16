@@ -15,6 +15,7 @@
             $url = 'editProfilForm.php';
             $id = (int) $_SESSION["currentUserId"];
         }
+        
 
     $viewContent = <<<HTML
     <div class="content loginForm">

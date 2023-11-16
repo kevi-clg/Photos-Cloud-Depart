@@ -16,6 +16,8 @@ if (!isset($_GET["id"]))
         $user->setBlocked(1);
     }
 
+    UsersFile()->update($user);
+
     redirect("usersList.php?id=$id");
 
 

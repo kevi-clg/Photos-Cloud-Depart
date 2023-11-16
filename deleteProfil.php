@@ -5,7 +5,7 @@ include 'models/photos.php';
 
 userAccess();
 
-$currentUserId = (int) $_SESSION["currentUserId"];
+$currentUserId = (int) $_GET["id"];
 
 do {
     $photos = PhotosFile()->toArray();
@@ -20,4 +20,7 @@ do {
 } while ($oneDeleted);
 
 UsersFile()->remove($currentUserId);
+if($_SESSION["currentUserId"]->isAdmin()){
+    redirect('usersList.php');
+}
 redirect('loginForm.php');
