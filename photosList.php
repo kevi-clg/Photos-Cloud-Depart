@@ -4,10 +4,30 @@ include "models/photos.php";
 include "models/users.php";
 $viewName="photoList";
 userAccess();
-$viewTitle = "Photos";
+$viewTitle = "Liste de photos";
 $list = PhotosFile()->toArray();
 $viewContent = "<div class='photosLayout'>";
 $user = UsersFile()->findByKey("id", $_SESSION['currentUserId']);
+$ajouterPhoto = ' <a href="newPhotoForm.php" class="cmdIcon fa fa-plus" title="Ajouter une photo"></a>';
+
+$list2 = [];
+$sort = "";
+if(isset($_GET['sort'])){
+    $sort = $_GET['sort'];
+}
+
+if ($sort == 'owners'){
+   
+}
+else if ($sort == 3){
+    foreach ($list as $key) {
+        if($key->OwnerId() == $user->Id()){
+            array_push($list2, $key);
+        }
+        $list = $list2;
+        
+    }
+}
 foreach ($list as $photo) {
     $id = strval($photo->id());
     
@@ -38,7 +58,7 @@ foreach ($list as $photo) {
         <div class="photoLayout" photo_id="$id">
             <div class="photoTitleContainer" title="$description">
                 <div class="photoTitle ellipsis">$title</div> $editCmd</div>
-            <a href="$image" target="_blank">
+            <a href="pagePhoto.php?id=$id" >
                 <div class="photoImage" style="background-image:url('$image')">
                     <div class="UserAvatarSmall transparentBackground" style="background-image:url('$ownerAvatar')" title="$ownerName"></div>
                     $sharedIndicator

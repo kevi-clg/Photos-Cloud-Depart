@@ -13,7 +13,10 @@ if(!$user->isAdmin()){
 
 $viewTitle = "Liste des usagers";
 $list = UsersFile()->toArray();
+
 $viewContent = "";
+
+
 
 foreach ($list as $User) {
     $id = strval($User->id());
@@ -30,8 +33,11 @@ foreach ($list as $User) {
         $face = '<i class="fas fa-frown" style="font-size:24px;color:red"></i>';
     }
 
-    if($user->isAdmin()){
-        $adminIcone;
+    if($User->isAdmin()){
+        $adminIcone = '<i class="fa fa-eye" style="font-size:24px;color:black"></i>';
+    }
+    else{
+        $adminIcone = '<i class="fa fa-eye-slash" style="font-size:24px;color:black"></i>';
     }
     $UserHTML = <<<HTML
     <div class="UserRow" User_id="$id">
@@ -41,7 +47,7 @@ foreach ($list as $User) {
                 <div class="UserInfo">
                     <span class="UserName">$name</span>
                     <a href="mailto:$email" class="UserEmail" target="_blank" >$email</a>
-                    <a href="loginForm.php">login</a>
+                    <a href="AdminChanger?id=$id">$adminIcone</a>
                     <a href="blockedUnblocked.php?id=$id">$face</a>
                     <a href="confirmDeleteProfil?id=$id"><i class="fas fa-user-alt-slash" style="font-size:24px;color:orange"></i></a>
                     

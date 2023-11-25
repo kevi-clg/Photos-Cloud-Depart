@@ -9,6 +9,12 @@
     if (!isset($viewName))
         $viewName = "";
 
+        
+    if (!isset($ajouterPhoto)){
+        $ajouterPhoto = "<div></div>";
+    }
+        
+
     $loggedUserMenu = "";
     $connectedUserAvatar = "";
 
@@ -68,13 +74,16 @@
          <a href="photosList.php?sort=owners" class="dropdown-item" id="photosListCmd">
                 <i class="menuIcon fa fa-users mx-2"></i>Trier les photos par créateur
          </a>
+         <a href="photosList.php?sort=3" class="dropdown-item" id="photosListCmd">
+                <i class="menuIcon fa fa-users mx-2"></i>Mes photos
+         </a>
         HTML;
     }
 
     $viewHead = <<<HTML
         <a href="photosList.php" title="Liste des photos"><img src="images/PhotoCloudLogo.png" class="appLogo"></a>
         <span class="viewTitle">$viewTitle 
-            <a href="newPhotoForm.php" class="cmdIcon fa fa-plus" title="Ajouter une photo"></a>
+           $ajouterPhoto
         </span>
         <div class="headerMenusContainer">
             <span>&nbsp</span> <!--filler-->

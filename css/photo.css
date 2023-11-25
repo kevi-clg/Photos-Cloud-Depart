@@ -25,6 +25,19 @@
     padding: 5px;
 }
 
+.photoImage2 {
+    display:flex;
+    gap:5px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 75%;
+    height: 600px;
+    border-radius: 9px;
+    padding: 5px;
+    margin:auto;
+}
+
 .photoTitleContainer {
     height: 40px;
     display:grid;
